@@ -11,4 +11,7 @@
 		die($conn_error);
 	}
 
+	$link = "localhost/leaveapp/assets/";
+	$uploadslink = "/leaveapp/uploads/";
+
 ?>
