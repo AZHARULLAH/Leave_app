@@ -1,0 +1,32 @@
+hr.style6
+{
+	background-color: #26a69a;
+	border-top: 2px solid #26a69a;
+	color: red;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+table {
+border:none;
+border-collapse: collapse;
+}
+
+table td {
+border-left: 1px solid #000;
+border-right: 1px solid #000;
+}
+
+table td:first-child {
+border-left: none;
+}
+
+table td:last-child {
+border-right: none;
+}
+
+td:nth-child(1) {
+color: black;
+font-weight: bold;
+background-color: #b2dfdb;
+}

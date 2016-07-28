@@ -76,7 +76,7 @@
 
 		<h4 class="center">EEE Department - Leave Application From</h4>
 
-		<br><hr class="style6"><br>
+		<br><hr class="style6 z-depth-1"><br>
 
 		<div id="errorsdiv">
 
@@ -107,7 +107,7 @@
 
 		</div>
 
-		<?php  
+		<?php
 
 			if ($_SERVER["REQUEST_METHOD"] == "POST")
 			{
@@ -116,12 +116,12 @@
 
 		?>
 
-			<div id="info">
+			<div id="info" class="center" style="margin-top:30px;">
 
-				<h5><?php echo $regno;  ?></h5>
-				<p>Maximum number of leaves allowed : <span class="numbers"><?php echo $max_leaves;  ?></span></p>
-				<p>Number of leaves already availed : <span class="numbers"><?php echo $leaves_availed;  ?></span></p>
-				<p>Maximum number of leaves allowed : <span class="numbers"><?php echo $max_leaves - $leaves_availed;  ?></span></p>
+				<h4 style="color:#26a69a;"><?php echo $regno;  ?></h4>
+				<p style="font-size:20px; margin-top:30px">Maximum number of leaves allowed : <span class="numbers"><span class="days"><?php echo $max_leaves;  ?></span></p>
+				<p style="font-size:20px; margin-top:30px">Number of leaves already availed : <span class="numbers"><span class="days"><?php echo $leaves_availed;  ?></span></p>
+				<p style="font-size:20px; margin-top:30px">Maximum number of leaves that can the availed : <span class="numbers"><span class="days"><?php echo $max_leaves - $leaves_availed;  ?></span></p>
 
 			</div>
 

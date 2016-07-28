@@ -12,16 +12,19 @@
 
 		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	      	<link type="text/css" rel="stylesheet" href="../materialize/css/materialize.css"  media="screen,projection"/>
-	      	<script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="../css/approval.css">
 
 	</head>
 
 	<body class="container">
 
+		<img class="left" height="130px" src="../img/nitc.png">
 		<h3 class="center">National Institute Of Technology, Calicut</h3>
 
-		<h4 class="center">EEE Department - Leave Application From</h4>
+		<h4 class="center">EEE Department - Leave Application Form</h4>
+
+		<br><hr class="style6 z-depth-1"><br>
 
 		<?php
 
@@ -120,12 +123,12 @@
 		        		</tbody>
 		      	</table>
 
-		      	<a id="print" style="margin-top:30px;" href="javascript:window.print()" class="waves-effect waves-light btn-large"><i class="material-icons right">thumb_up</i>Print this page</a>
+		      	<a id="print" style="margin-top:30px; margin-left:40%;" href="javascript:window.print()" class="waves-effect waves-light btn-large center"><i class="material-icons right">print</i>Print this page</a>
 
 		      	<script type="text/javascript">
 
 		      		$("#print").click(function(){
-		      			$(this).css("display","none");
+		      			$(this).remove();
 		      		})
 
 		      	</script>
@@ -137,6 +140,17 @@
 			      		-webkit-print-color-adjust: exact;
 				      	print-color-adjust: exact;
 			   	}
+
+			   	#print
+				{
+					display: none;
+				}
+
+				}
+
+				img
+				{
+					float: left;
 				}
 
 				header nav, footer {

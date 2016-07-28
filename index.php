@@ -198,11 +198,12 @@
 
 	<body class="container">
 
+		<img class="left" height="130px" src="img/nitc.png">
 		<h3 class="center">National Institute Of Technology, Calicut</h3>
 
-		<h4 class="center">EEE Department - Leave Application From</h4>
+		<h4 class="center">EEE Department - Leave Application Form</h4>
 
-		<br><hr class="style6"><br>
+		<br><hr class="style6 z-depth-1"><br>
 
 		<div id="form_body" class="row">
 
@@ -256,7 +257,7 @@
 
 				</div>
 
-				<br><hr class="style6"><br>
+				<!-- <br><hr class="style6 z-depth-1"><br> -->
 
 				<div class="row">
 
@@ -282,12 +283,12 @@
 
 				</div>
 
-				<br><hr class="style6"><br>
+				<br><hr class="style6 z-depth-1"><br>
 
 				<div class="row col s12 m12 l12">
 
-					<h5 class="center">Period of Absence</h5><br>
-					<p class="center"><a href="assets/checkleaves.php" target="_blank">Click here to check the number of leaves you can still avail.</a></p><br>
+					<h4 class="center">Period of Absence</h4>
+					<p class="center" style="font-size:20px;"><a href="assets/checkleaves.php" target="_blank">Click here to check the number of leaves you can still avail.</a></p><br>
 					<div class="row col s12 m4 l3 offset-m1 offset-l1 left">
 						<label>From Date</label>
 						<input type="date" id="fromdate" name="fromdate" class="datepicker" value="<?php echo isset($_POST['fromdate']) ? $_POST['fromdate'] : '' ?>">
@@ -302,7 +303,7 @@
 
 				</div>
 
-				<br><hr class="style6"><br>
+				<br><hr class="style6 z-depth-1"><br>
 
 				<div class="row col s12 m12 l12">
 

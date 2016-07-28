@@ -20,9 +20,12 @@
 
 	<body class="container">
 
+		<img class="left" height="130px" src="../img/nitc.png">
 		<h3 class="center">National Institute Of Technology, Calicut</h3>
 
-		<h4 class="center">EEE Department - Leave Application From</h4>
+		<h4 class="center">EEE Department - Leave Application Form</h4>
+
+		<br><hr class="style6 z-depth-1"><br>
 
 	<?php
 
@@ -64,9 +67,9 @@
 		$faculty_email = $row['faculty_email'];
 
 		$app_link = "<a href='" . $link . "fa_approval.php?appno=" . $app_no . "&fa_id=" . $fa_id . "'>" . $link . "fa_approval.php?appno=" . $app_no . "&fa_id=" . $fa_id . "</a>";
-		$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. <br><br> You have received this mail because a student, " . $_SESSION['name'] . "</span> , roll no - " . $reg_no . " has applied for a leave. His application needs your recommendation and this application will be forwarded to the HOD for approval. Click the link to take action - .  " . $app_link;
+		$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. You have received this mail because a student, <b>" . $_SESSION['name'] . "</b> , roll no - <b>" . $reg_no . "</b> has applied for a leave. His application needs your recommendation and this application will be forwarded to the HOD for approval. Click the link to take action - .  " . $app_link;
 
-		$mail = smtpmailer('leaves.eee@mail.com', $faculty_email , 'EEE Dept., NITC', 'Recommendation for leave approval', $msg);
+		$mail = smtpmailer($faculty_email, 'leaves.eee@gmail.com' , 'EEE Dept., NITC', 'Recommendation for leave approval', $msg);
 		if($mail)
 		{
 		  	echo '<p>Your application has been sent to ' . $faculty_name  . '. You will receive a mail once it has been approved. Also, Please check your spam as the mail sent might be detected as spam. </p>';
@@ -77,17 +80,6 @@
 		}
 
 	?>
-
-	<style type="text/css">
-
-		.bold
-		{
-			color: orange;
-			font-weight: bold;
-			font-size: 20px;
-		}
-
-	</style>
 
 	</body>
 
