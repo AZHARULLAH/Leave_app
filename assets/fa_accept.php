@@ -29,6 +29,7 @@
 		<?php
 
 			require "../includes/connectdb.php";
+			require "../PHPMailer/test/testemail.php";
 			mysql_select_db("leaveapp");
 
 			$sql = "SELECT * FROM faculty_details WHERE faculty_id =  $fa_id";
@@ -43,12 +44,14 @@
 			$hod_email = $row['email'];
 
 			$app_link = "<a href='" . $link . "hod_approval.php?appno=" . $app_no . "'>" . $link . "hod_approval.php?appno=" . $app_no . "</a>";
-			$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. You have received this mail because a student, " . $_SESSION['name'] . " , roll no - " . $studentrollno . " has applied for a leave. The application has been recommended by his FA, Mr. " . $fac_name . " His application needs your approval and the leave will be granted. Click the below link to take action. " . $app_link;
+			$msg = "<p>This an electronic generated mail from the Electrical engineering department, NIT Calicut. You have received this mail because a student, <b>" . $_SESSION['name'] . "</b> , roll no - <b>" . $studentrollno . "</b> has applied for a leave. The application has been recommended by his FA, Mr. <b>" . $fac_name . "</b>. His application needs your approval and the leave will be granted. Click the link to take action. " . $app_link . "</p>";
 
-			$mail=mail($hod_email, "Approval of leave application", $msg);
-			if($mail)
+			// $mail= smtpmailer('leaves.eee@gmail.com', $hod_email , 'EEE Dept., NITC', 'Approval for leave request', $msg);
+			if(smtpmailer($hod_email, 'leaves.eee@gmail.com' , 'EEE Dept., NITC', 'Approval for leave request', $msg))
 			{
 			  	echo '<p>The application has been forwarded to the HOD, Mr.  ' . $hod_name  . '. Thank you. </p>';
+			  	$sql = "UPDATE app_status SET set_to_hod = 1 WHERE app_no = $app_no";
+			  	$query = mysql_query($sql, $mysql_conn);
 			}
 			else
 			{

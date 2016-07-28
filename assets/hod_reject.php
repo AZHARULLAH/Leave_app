@@ -28,6 +28,7 @@
 		<?php
 
 			require "../includes/connectdb.php";
+			require "../PHPMailer/test/testemail.php";
 			mysql_select_db("leaveapp");
 
 			$sql = "SELECT * FROM hod_details";
@@ -42,10 +43,9 @@
 			$leave_fromdate = $row['from_date'];
 			$leave_todate = $row['to_date'];
 
-			$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. You have received this mail because you have applied for a leave from " . $leave_fromdate . " to " . $leave_todate . ". Your application has not been approved by the HOD, Mr. " . $hod_name . ".";
+			$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. You have received this mail because you have applied for a leave from <b>" . $leave_fromdate . "</b> to <b>" . $leave_todate . "</b>. Your application has not been approved by the HOD, Mr. <b>" . $hod_name . "</b>.";
 
-			$mail=mail($student_email, "Leave application rejected", $msg);
-			if($mail)
+			if(smtpmailer($student_email, 'leaves.eee@gmail.com' , 'EEE Dept., NITC', 'Approval for leave request', $msg))
 			{
 			  	echo '<p> A mail has been sent to the student stating that his application for leave has been rejected. Thank you. </p>';
 			}

@@ -27,6 +27,7 @@
 	<?php
 
 		require "../includes/connectdb.php";
+		require "../PHPMailer/test/testemail.php";
 		mysql_select_db("leaveapp");
 
 		// 1 - sent
@@ -63,12 +64,12 @@
 		$faculty_email = $row['faculty_email'];
 
 		$app_link = "<a href='" . $link . "fa_approval.php?appno=" . $app_no . "&fa_id=" . $fa_id . "'>" . $link . "fa_approval.php?appno=" . $app_no . "&fa_id=" . $fa_id . "</a>";
-		$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. <br><br> You have received this mail because a student, <span class='bold'>" . $_SESSION['name'] . "</span> , roll no - <span class='bold'>" . $reg_no . "</span> has applied for a leave. His application needs your recommendation and this application will be forwarded to the HOD for approval. Click the below link to take action. <br><br> " . $app_link;
+		$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. <br><br> You have received this mail because a student, " . $_SESSION['name'] . "</span> , roll no - " . $reg_no . " has applied for a leave. His application needs your recommendation and this application will be forwarded to the HOD for approval. Click the link to take action - .  " . $app_link;
 
-		$mail=mail($faculty_email, "Recommendation for leave approval", $msg);
+		$mail = smtpmailer('leaves.eee@mail.com', $faculty_email , 'EEE Dept., NITC', 'Recommendation for leave approval', $msg);
 		if($mail)
 		{
-		  	echo '<p>Your application has been sent to ' . $faculty_name  . '. You will receive a mail once it has been approved. Please check your spam as the mail sent might be detected as spam. </p>';
+		  	echo '<p>Your application has been sent to ' . $faculty_name  . '. You will receive a mail once it has been approved. Also, Please check your spam as the mail sent might be detected as spam. </p>';
 		}
 		else
 		{

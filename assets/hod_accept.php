@@ -28,6 +28,7 @@
 		<?php
 
 			require "../includes/connectdb.php";
+			require "../PHPMailer/test/testemail.php";
 			mysql_select_db("leaveapp");
 
 			$sql = "SELECT * FROM hod_details";
@@ -43,16 +44,17 @@
 			$leave_todate = $row['to_date'];
 
 			$app_link = "<a href='" . $link . "final_approved.php?appno=" . $app_no . "'>" . $link . "final_approved.php?appno=" . $app_no . "</a>";
-			$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. You have received this mail because you have applied for a leave from " . $leave_fromdate . " to " . $leave_todate . ". And your leave has been approved by the HOD, Mr. " . $hod_name . ". Please take a print out of the application form in the link below and submit it in the department office." . $app_link;
+			$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. You have received this mail because you have applied for a leave from <b>" . $leave_fromdate . "</b> to <b>" . $leave_todate . "</b>. And your leave has been approved by the HOD, Mr. <b>" . $hod_name . "</b>. Please take a print out of the application form in the link below and submit it in the department office." . $app_link;
 
-			$mail=mail($student_email, "Approval of leave application", $msg);
-			if($mail)
+			if(smtpmailer($student_email, 'leaves.eee@gmail.com' , 'EEE Dept., NITC', 'Approval for leave request', $msg))
 			{
-			  	echo '<p>The approved application form has been sent to the student, Thank you. </p>';
+			  	echo '<p>The approval of the leave application has been sent to the student. Thank you. </p>';
+			  	$sql = "UPDATE app_status SET status = 1 WHERE app_no = $app_no";
+			  	$query = mysql_query($sql, $mysql_conn);
 			}
 			else
 			{
-			  	echo '<p>There is an unexpected error in forwarding the leave application to the student. Please try again. </p>';
+			  	echo '<p>There is an unexpected error in forwarding the leave application. Please try again. </p>';
 			}
 
 			session_unset();

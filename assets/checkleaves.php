@@ -11,7 +11,7 @@
 
 <?php
 
-	require "includes/connectdb.php";
+	require "../includes/connectdb.php";
 	mysql_select_db("leaveapp");
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -37,7 +37,7 @@
 		$leaves_availed = $row['no_of_leaves'];
 	}
 
-	$char = substr($reg, 0, 1);
+	$char = substr($regno, 0, 1);
 	if($char == "b")
 	{
 		$sql = "SELECT no_of_leaves FROM max_leaves_allowed WHERE programme = 1";
@@ -107,14 +107,25 @@
 
 		</div>
 
-		<div id="info">
+		<?php  
 
-			<h5><?php echo $regno;  ?></h5>
-			<p>Maximum number of leaves allowed : <span class="numbers"><?php echo $max_leaves;  ?></span></p>
-			<p>Number of leaves already availed : <span class="numbers"><?php echo $max_leaves;  ?></span></p>
-			<p>Maximum number of leaves allowed : <span class="numbers"><?php echo $max_leaves;  ?></span></p>
+			if ($_SERVER["REQUEST_METHOD"] == "POST")
+			{
+				if(isset($_POST['submit']))
+				{
 
-		</div>
+		?>
+
+			<div id="info">
+
+				<h5><?php echo $regno;  ?></h5>
+				<p>Maximum number of leaves allowed : <span class="numbers"><?php echo $max_leaves;  ?></span></p>
+				<p>Number of leaves already availed : <span class="numbers"><?php echo $leaves_availed;  ?></span></p>
+				<p>Maximum number of leaves allowed : <span class="numbers"><?php echo $max_leaves - $leaves_availed;  ?></span></p>
+
+			</div>
+
+		<?php }} ?>
 
 		<script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
       		<script type="text/javascript" src="../materialize/js/materialize.min.js"></script>

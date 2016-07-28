@@ -45,14 +45,15 @@
 
 			$msg = "This an electronic generated mail from the Electrical engineering department, NIT Calicut. You have received this mail because you have applied for a leave from " . $leave_fromdate . " to " . $leave_todate . ". Your application has not been approved by your FA, Mr. " . $fac_name . ".";
 
-			$mail=mail($student_email, "Leave application rejected", $msg);
-			if($mail)
+			if(smtpmailer($student_email, 'leaves.eee@gmail.com' , 'EEE Dept., NITC', 'Approval for leave request', $msg))
 			{
-			  	echo '<p> A mail has been sent to the student stating that his application for leave has been rejected. Thank you. </p>';
+			  	echo '<p>The application has been forwarded to the HOD, Mr.  ' . $hod_name  . '. Thank you. </p>';
+			  	$sql = "UPDATE app_status SET set_to_hod = 1 WHERE app_no = $app_no";
+			  	$query = mysql_query($sql, $mysql_conn);
 			}
 			else
 			{
-			  	echo '<p>There is an unexpected error in forwarding the leave application to the student. Please try again. </p>';
+			  	echo '<p>There is an unexpected error in forwarding the leave application. Please try again. </p>';
 			}
 
 			session_unset();
